@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup Page</title>
+    <style>
+        /* Background Image */
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-image: url('https://res.cloudinary.com/djywjx2l6/image/upload/v1738315186/samples/landscapes/architecture-signs.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            overflow: hidden;
+        }
+
+        .container {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            z-index: 2;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        input[type="text"], input[type="email"], input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .login-link {
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        /* Snowfall effect */
+        .snowflake {
+            position: absolute;
+            top: -10px;
+            color: #fff;
+            font-size: 1em;
+            user-select: none;
+            z-index: 1;
+            opacity: 0.8;
+        }
+
+        @keyframes snow {
+            0% {
+                transform: translateY(0) rotate(0deg);
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Snowfall Effect -->
+    <script>
+        function createSnowflakes() {
+            const snowflakesCount = 100; // Number of snowflakes
+            const body = document.body;
+
+            for (let i = 0; i < snowflakesCount; i++) {
+                let snowflake = document.createElement('div');
+                snowflake.classList.add('snowflake');
+                snowflake.textContent = '❄';
+                snowflake.style.left = `${Math.random() * 100}vw`; // Random left position
+                snowflake.style.animationDuration = `${Math.random() * 3 + 2}s`; // Random animation speed
+                snowflake.style.animationDelay = `${Math.random() * 0.5}s`; // Random delay before snowflake starts falling
+                snowflake.style.fontSize = `${Math.random() * 10 + 15}px`; // Random snowflake size
+                snowflake.style.opacity = Math.random() * 0.5 + 0.5; // Random opacity for variation
+                body.appendChild(snowflake);
+
+                // Animation keyframe
+                snowflake.style.animationName = 'snow';
+            }
+        }
+
+        window.onload = createSnowflakes;
+    </script>
+
+    <!-- Signup Form -->
+    <div class="container">
+        <h2>Create Account</h2>
+        <form action="/signupForm" method="POST">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" placeholder="Enter username" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" placeholder="Enter password" required>
+            </div>
+            <button type="submit">Sign Up</button>
+        </form>
+        <span style="color: red;">{{err}}</span> 
+        <span style="color: green;">{{msg}}</span>
+        <div class="login-link">
+            <p>Already have an account?</p>
+        </div>
+    </div>
+    
+</body>
+</html>
