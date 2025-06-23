@@ -1,2 +1,2 @@
-# fukkstack_hackathon
+# fullstack_hackathon
 full stack 
